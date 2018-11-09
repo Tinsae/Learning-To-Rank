@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="parentVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="320.0" prefWidth="640.0" spacing="15.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Create">
+   <children>
+      <Accordion fx:id="fullAccordion">
+        <panes>
+          <TitledPane fx:id="firstTitledPane" animated="false" text="Iniital Setup">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <SplitPane dividerPositions="0.610032362459547" prefHeight="198.0" prefWidth="620.0">
+                           <items>
+                              <GridPane hgap="1.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="136.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="52.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Select Algorithm" />
+                                    <Label text="Training File" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtTraining" promptText="browse file" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Feature Desc File" GridPane.rowIndex="4" />
+                                    <TextField fx:id="txtFeatDesc" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label text="Normalize ?" GridPane.rowIndex="3" />
+                                    <Button fx:id="btnBrowseTrain" mnemonicParsing="false" onAction="#browseClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Button fx:id="btnBrowseFeat" mnemonicParsing="false" onAction="#browseClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <RadioButton fx:id="rdNormYes" lineSpacing="2.0" mnemonicParsing="false" onAction="#normalizeFeatures" text="Yes" textAlignment="CENTER">
+                                             <padding>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                             </padding>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="normalizeStatus" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="rdNormNo" mnemonicParsing="false" onAction="#normalizeFeatures" selected="true" text="No" textAlignment="CENTER" toggleGroup="$normalizeStatus">
+                                             <padding>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                             </padding>
+                                          </RadioButton>
+                                       </children>
+                                    </HBox>
+                                    <ComboBox fx:id="cbAlgorithm" onAction="#algSelected" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <Label text="Sparse ?" GridPane.rowIndex="2" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <RadioButton fx:id="rdSparseYes" lineSpacing="2.0" mnemonicParsing="false" onAction="#useSparseRepresentation" text="Yes" textAlignment="CENTER">
+                                             <padding>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                             </padding>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="sparseStatus" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="rdSparseNo" mnemonicParsing="false" onAction="#useSparseRepresentation" selected="true" text="No" textAlignment="CENTER" toggleGroup="$sparseStatus">
+                                             <padding>
+                                                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                             </padding>
+                                          </RadioButton>
+                                       </children>
+                                    </HBox>
+                                    <ComboBox fx:id="cmbNormalizers" onAction="#normalizerSelected" prefHeight="25.0" prefWidth="88.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="3.0" right="3.0" />
+                                 </padding>
+                              </GridPane>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                              </GridPane>
+                           </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Test/Validation Data">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <GridPane hgap="1.0" layoutX="14.0" layoutY="19.0" vgap="1.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="112.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="142.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="95.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="41.0" minHeight="6.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Train-Test Split" GridPane.rowIndex="1" />
+                              <Label text="Train-Val Split" GridPane.rowIndex="2" />
+                              <Label text="Testing File" GridPane.rowIndex="3" />
+                              <Label text="Validation File" GridPane.rowIndex="4" />
+                              <Slider fx:id="sliderTT" majorTickUnit="50.0" minorTickCount="10" prefHeight="26.0" prefWidth="114.0" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="lblTT" prefWidth="84.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin></Label>
+                              <TextField fx:id="txtTestingFile" promptText="browse file" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtValidationFile" promptText="browse file" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Button fx:id="btnBrowseVal" mnemonicParsing="false" onAction="#browseClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Button fx:id="btnBrowseTest" mnemonicParsing="false" onAction="#browseClick" text="..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label text="Cross Validation ?" />
+                              <Slider fx:id="sliderTV" majorTickUnit="50.0" minorTickCount="10" prefHeight="10.0" prefWidth="142.0" showTickMarks="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="lblTV" prefWidth="84.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets left="5.0" />
+                                 </GridPane.margin></Label>
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtNFold" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="26.0" text="5">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label text="fold CV">
+                                       <HBox.margin>
+                                          <Insets top="3.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <RadioButton fx:id="rdCrossYes" lineSpacing="2.0" mnemonicParsing="false" onAction="#wantToDoCV" text="Yes" textAlignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                       </padding>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="cvStatus" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rdCrossNo" mnemonicParsing="false" onAction="#wantToDoCV" selected="true" text="No" textAlignment="CENTER" toggleGroup="$cvStatus">
+                                       <padding>
+                                          <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                       </padding>
+                                    </RadioButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="CV and Metrics">
+            <content>
+              <AnchorPane>
+                     <children>
+                        <GridPane hgap="1.0" prefHeight="115.0" prefWidth="406.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="111.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="161.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="125.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="KCV Model Directory" />
+                              <Label text="KCV Model File" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtModelPrefix" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="138.0" text="txt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtKCVDirectory" prefHeight="24.0" prefWidth="163.0" promptText="directory" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="Train Metric" GridPane.rowIndex="2" />
+                              <Label text="Test Metric" GridPane.rowIndex="3" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <ComboBox fx:id="cmbTrainMetric" onAction="#metricSelected" prefHeight="25.0" prefWidth="120.0">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <Label text="\@" textAlignment="CENTER">
+                                       <HBox.margin>
+                                          <Insets left="15.0" right="7.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <ComboBox fx:id="cmbTestMetric" prefHeight="25.0" prefWidth="120.0">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin>
+                                    </ComboBox>
+                                    <Label text="\@" textAlignment="CENTER">
+                                       <HBox.margin>
+                                          <Insets left="15.0" right="7.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Spinner fx:id="spinnerTrainMetric" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Spinner fx:id="spinnerTestMetric" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <TextField fx:id="txtKCVName" prefHeight="25.0" prefWidth="76.0" promptText="Name?" GridPane.columnIndex="2" />
+                           </children>
+                           <padding>
+                              <Insets left="3.0" right="3.0" />
+                           </padding>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="Finalize">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <GridPane hgap="3.0" vgap="3.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="98.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="156.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="117.0" text="Model File Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtModelFileName" prefHeight="25.0" prefWidth="146.0" promptText="filename.extension" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Button fx:id="btnCreateModel" mnemonicParsing="false" onAction="#createModelClick" text="Create Model" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="chkSave" alignment="CENTER" mnemonicParsing="false" text="Save" textAlignment="CENTER" GridPane.rowIndex="2" />
+                              <Label text="Silent ?" />
+                              <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <RadioButton fx:id="rdSilentYes" lineSpacing="2.0" mnemonicParsing="false" onAction="#keepQuiet" text="Yes" textAlignment="CENTER">
+                                       <padding>
+                                          <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                       </padding>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="sielntStatus" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rdSilentNo" mnemonicParsing="false" onAction="#keepQuiet" selected="true" text="No" textAlignment="CENTER" toggleGroup="$sielntStatus">
+                                       <padding>
+                                          <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                                       </padding>
+                                    </RadioButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>
